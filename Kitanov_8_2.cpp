@@ -179,7 +179,8 @@ int main()
             typeFail = cin.fail();
             cin.clear();
             cin.ignore(INT_MAX, '\n');
-        }         while (typeFail);
+        }        
+        while (typeFail);
     }
 
     our_struct* start_elem = 0;
