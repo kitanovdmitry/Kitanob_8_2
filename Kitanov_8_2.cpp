@@ -194,5 +194,6 @@ int main()
 
     Print_Cell(start_elem, number_of_obj);
     Free_Memory(start_elem, number_of_obj);
+    delete[] obj;
     return 0;
 }
