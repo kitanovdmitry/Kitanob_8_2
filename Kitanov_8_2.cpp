@@ -1,3 +1,10 @@
+/*
+РђРІС‚РѕСЂ: РљРёС‚Р°РЅРѕРІ Р”РјРёС‚СЂРёР№
+Р“СЂСѓРїРїР°: РЎР‘РЎ-001, РїРѕРґРіСЂСѓРїРїР° 2
+Р—Р°РґР°С‡Р° в„–8, РІР°СЂРёР°РЅС‚ 2
+Р¦РµР»СЊ: СЃРѕР·РґР°С‚СЊ РґРµСЂРµРІРѕ РѕР±СЉРµРєС‚РѕРІ РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ СѓСЃР»РѕРІРёСЏРјРё Р·Р°РґР°РЅРёСЏ
+*/
+
 #include <iostream>
 #include <climits>
 
@@ -18,14 +25,11 @@ public:
 void Add_Elem(our_struct*& address, int val1, int val2, int val3)
 {
     static const size_t NumElems = 5;
-
-    // создаём новую ячейку
+    
     our_struct* ptrs[NumElems];
     for (size_t i = 0; i < NumElems; ++i)
     {
         ptrs[i] = new our_struct;
-        // Проверять на ptrs[i] на NULL не имеет смысла, поскольку при недостатке памяти
-        // будет брошено исключение, которое надо ловить в вызывающем коде.
     }
 
     ptrs[0]->int_field = val1;
@@ -40,7 +44,6 @@ void Add_Elem(our_struct*& address, int val1, int val2, int val3)
     ptrs[2]->left = ptrs[1];
     ptrs[2]->right = nullptr;
 
-    // вставляем новую ячейку в цепочку ячеек
     if (address == nullptr)
     {
         address = ptrs[0];
@@ -48,12 +51,12 @@ void Add_Elem(our_struct*& address, int val1, int val2, int val3)
     else
     {
         our_struct* p = address;
-        // спускаемся по левым элементам до начала следующей ячейки
+        
         while (p->left->left != nullptr)
         {
             p = p->left->left;
         }
-        // настраиваем указатели последней ячейки на первый элемент новой ячейки
+
         p->left->left = p->right->right = ptrs[0];
     }
     return;
